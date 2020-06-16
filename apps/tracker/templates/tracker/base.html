@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{% static 'tracker/myMoney.png' %}">
+    <link rel="stylesheet" href="{% static 'tracker/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'tracker/myStyle.css' %}">
+
+    <title>Auth System</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-3">
+          <a href="{% url 'home' %}">
+            <img src="{% static 'tracker/myMoney.png' %}" alt="a lock picture" width=64 height=64>
+            <span id="proj_name">Auth System</span>
+          </a>
+        </div>
+
+        {% if user.is_authenticated %}
+          <div class="col-3">
+            <form action="{% url 'logOutUser' %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary">Log Out</button>
+            </form>
+          </div>
+        {% endif %}
+
+      </div>
+
+
+
+
+
+    <div class="container text-center">
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
