@@ -12,29 +12,24 @@
   </head>
   <body>
     <div class="container">
-      <div class="row align-items-center justify-content-between">
+      <div class="row align-items-center">
         <div class="col-3">
           <a href="{% url 'home' %}">
             <img src="{% static 'tracker/myMoney.png' %}" alt="a lock picture" width=64 height=64>
             <span id="proj_name">Auth System</span>
           </a>
         </div>
-
         {% if user.is_authenticated %}
-          <div class="col-3">
-            <form action="{% url 'logOutUser' %}" method="POST">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-primary">Log Out</button>
-            </form>
-          </div>
+        <div class="col-3 text-right offset-6">
+          <form action="{% url 'logOutUser' %}" method="POST">
+            {% csrf_token %}
+            <label for="logOut">Logged in as <b>{{ user.username }}</b></label>
+            <button name="logOut" type="submit" class="btn btn-primary">Log Out</button>
+          </form>
+        </div>
         {% endif %}
-
       </div>
-
-
-
-
-
+      
     <div class="container text-center">
       {% block content %}{% endblock %}
     </div>

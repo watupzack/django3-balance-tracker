@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
+from .models import UserBalance
 
 def home(request):
     return render(request, 'tracker/home.html')
@@ -20,6 +21,8 @@ def signUpUser(request):
                                                 first_name=request.POST.get('first_name'),
                                                 last_name=request.POST.get('last_name'))
                 user.save()
+                user_balance = UserBalance.objects.create(user=user, mdl=0, eur=0, usd=0)
+                user_balance.save()
                 login(request, user)
                 return redirect('userPage')
             except IntegrityError:
