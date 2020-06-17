@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hwn5%=$eb#2+lakr-#607&+5817sipx8$+-1sjz4q7zoetvz2$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['balance-trackeer.herokuapp.com']
 
 
 # Application definition
