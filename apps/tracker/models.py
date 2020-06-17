@@ -7,6 +7,7 @@ class UserBalance(models.Model):
     mdl = models.IntegerField(default=0)
     eur = models.IntegerField(default=0)
     usd = models.IntegerField(default=0)
+    ron = models.IntegerField(default=0)
 
 
     def __str__(self):

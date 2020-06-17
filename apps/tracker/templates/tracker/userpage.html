@@ -1,5 +1,11 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
-  
+USD : {{ user_balance.usd }}
+MDL : {{ user_balance.mdl }}
+EUR : {{ user_balance.eur }}
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-success">Put</button>
+  <button type="button" class="btn btn-danger">Withdraw</button>
+</div>
 
 {% endblock %}

@@ -5,12 +5,17 @@ from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from .models import UserBalance
 
+
 def home(request):
     return render(request, 'tracker/home.html')
 
+
 @login_required
 def userPage(request):
-    return render(request, 'tracker/userpage.html')
+    user_balance = UserBalance.objects.get(user=request.user)
+    context = {'user_balance': user_balance}
+    return render(request, 'tracker/userpage.html', context)
+
 
 def signUpUser(request):
     if request.method == "POST":
@@ -32,11 +37,13 @@ def signUpUser(request):
     else:
         return render(request, 'tracker/signup.html')
 
+
 @login_required
 def logOutUser(request):
     if request.method == "POST":
         logout(request)
         return redirect('home')
+
 
 def logInUser(request):
     if request.method == "POST":
