@@ -1,11 +1,52 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
-USD : {{ user_balance.usd }}
-MDL : {{ user_balance.mdl }}
-EUR : {{ user_balance.eur }}
-<div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-success">Put</button>
-  <button type="button" class="btn btn-danger">Withdraw</button>
-</div>
+  <div class="row mt-5">
+    <div class="col-md-3 col-sm-6 mt-3">
+      <form id="ronForm" method="POST">
+        {% csrf_token %}
+        <h5>{{ user_balance.mdl }} MDL</h5>
+        <input type="number" class="form-control" name="amount" value=0>
+        <div class="btn-group w-100 mt-2" role="group" aria-label="Basic example">
+          <button type="submit" class="btn btn-success" name="updateBalance" value="putMdl">Put</button>
+          <button type="submit" class="btn btn-danger" name="updateBalance" value="withdrawMdl">Withdraw</button>
+        </div>
+      </form>
+    </div>
 
+    <div class="col-md-3 col-sm-6 mt-3">
+      <form id="ronForm" method="POST">
+        {% csrf_token %}
+        <h5>{{ user_balance.usd }} USD</h5>
+        <input type="number" class="form-control" name="amount" value=0>
+        <div class="btn-group w-100 mt-2" role="group" aria-label="Basic example">
+          <button type="submit" class="btn btn-success" name="updateBalance" value="putUsd">Put</button>
+          <button type="submit" class="btn btn-danger" name="updateBalance" value="withdrawUsd">Withdraw</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mt-3">
+      <form id="ronForm" method="POST">
+        {% csrf_token %}
+        <h5>{{ user_balance.eur }} EUR</h5>
+        <input type="number" class="form-control" name="amount" value=0>
+        <div class="btn-group w-100 mt-2" role="group" aria-label="Basic example">
+          <button type="submit" class="btn btn-success" name="updateBalance" value="putEur">Put</button>
+          <button type="submit" class="btn btn-danger" name="updateBalance" value="withdrawEur">Withdraw</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mt-3">
+      <form id="ronForm" method="POST">
+        {% csrf_token %}
+        <h5>{{ user_balance.ron }} RON</h5>
+        <input type="number" class="form-control" name="amount" value=0>
+        <div class="btn-group w-100 mt-2" role="group" aria-label="Basic example">
+          <button type="submit" class="btn btn-success" name="updateBalance" value="putRon">Put</button>
+          <button type="submit" class="btn btn-danger" name="updateBalance" value="withdrawRon">Withdraw</button>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

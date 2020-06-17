@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'tracker/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'tracker/myStyle.css' %}">
 
-    <title>Auth System</title>
+    <title>Balance Tracker</title>
   </head>
   <body>
     <div class="container">
@@ -16,7 +16,7 @@
         <div class="col-3">
           <a href="{% url 'home' %}">
             <img src="{% static 'tracker/myMoney.png' %}" alt="a lock picture" width=64 height=64>
-            <span id="proj_name">Auth System</span>
+            <span id="proj_name">Balance Tracker</span>
           </a>
         </div>
         {% if user.is_authenticated %}
@@ -29,7 +29,7 @@
         </div>
         {% endif %}
       </div>
-      
+
     <div class="container text-center">
       {% block content %}{% endblock %}
     </div>

@@ -12,9 +12,55 @@ def home(request):
 
 @login_required
 def userPage(request):
-    user_balance = UserBalance.objects.get(user=request.user)
-    context = {'user_balance': user_balance}
-    return render(request, 'tracker/userpage.html', context)
+    if request.method == "POST":
+        user_balance = UserBalance.objects.get(user=request.user)
+
+        if request.POST.get('updateBalance') == 'putMdl':
+            user_balance.mdl += int(request.POST.get('amount'))
+        elif request.POST.get('updateBalance') == 'withdrawMdl':
+            user_balance.mdl -= int(request.POST.get('amount'))
+
+        elif request.POST.get('updateBalance') == 'putUsd':
+            user_balance.usd += int(request.POST.get('amount'))
+        elif request.POST.get('updateBalance') == 'withdrawUsd':
+            user_balance.usd -= int(request.POST.get('amount'))
+
+        elif request.POST.get('updateBalance') == 'putEur':
+            user_balance.eur += int(request.POST.get('amount'))
+        elif request.POST.get('updateBalance') == 'withdrawEur':
+            user_balance.eur -= int(request.POST.get('amount'))
+
+        elif request.POST.get('updateBalance') == 'putRon':
+            user_balance.ron += int(request.POST.get('amount'))
+        elif request.POST.get('updateBalance') == 'withdrawRon':
+            user_balance.ron -= int(request.POST.get('amount'))
+        # if request.POST.get('updateBalance') == 'put':
+        #     if request.POST.get('name') == "ronForm":
+        #         user_balance.ron += int(request.POST.get('amount'))
+        #     elif request.POST.get('name') == "usdForm":
+        #         user_balance.usd += request.POST.get('amount')
+        #     elif request.POST.get('name') == "eurForm":
+        #         user_balance.eur += request.POST.get('amount')
+        #     elif request.POST.get('name') == "mdlForm":
+        #         user_balance.mdl += request.POST.get('amount')
+        #
+        # elif request.POST.get('updateBalance') == 'withdraw':
+        #     if request.POST.get('name') == "ronForm":
+        #         user_balance.ron -= int(request.POST.get('amount'))
+        #     elif request.POST.get('name') == "usdForm":
+        #         user_balance.usd -= request.POST.get('amount')
+        #     elif request.POST.get('name') == "eurForm":
+        #         user_balance.eur -= request.POST.get('amount')
+        #     elif request.POST.get('name') == "mdlForm":
+        #         user_balance.mdl -= request.POST.get('amount')
+
+
+        user_balance.save()
+        return redirect('userPage')
+    else:
+        user_balance = UserBalance.objects.get(user=request.user)
+        context = {'user_balance': user_balance}
+        return render(request, 'tracker/userpage.html', context)
 
 
 def signUpUser(request):
