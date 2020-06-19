@@ -127,8 +127,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
-try:
-    from .local_settings import *
-except ImportError:
-    print("Looks like no local file. You must be on production")
