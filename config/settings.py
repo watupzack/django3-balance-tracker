@@ -23,10 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hwn5%=$eb#2+lakr-#607&+5817sipx8$+-1sjz4q7zoetvz2$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['balance-trackeer.herokuapp.com', '127.0.0.1']
-
+ALLOWED_HOSTS = ['balance-trackeer.herokuapp.com']
 
 # Application definition
 
@@ -128,3 +127,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+try:
+    from .local_settings import *
+except ImportError:
+    print("Looks like no local file. You must be on production")
